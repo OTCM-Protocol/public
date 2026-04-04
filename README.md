@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="LOGO C.png" alt="OTCM Protocol Logo" width="300"/>
+</p>
+
 # OTCM Protocol
 
 **Institutional-Grade Digital Securities Infrastructure on Solana**
