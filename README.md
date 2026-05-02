@@ -1,10 +1,6 @@
-<p align="center">
-  <img src="LOGO C.png" alt="OTCM Protocol Logo" width="300"/>
-</p>
+# RWA Tokens
 
-# OTCM Protocol
-
-**Institutional-Grade Digital Securities Infrastructure on Solana**
+**Institutional Infrastructure for Tokenized Real-World Assets**
 
 [![Solana](https://img.shields.io/badge/Solana-Mainnet--Beta-9945FF?logo=solana&logoColor=white)](https://solana.com)
 [![Token Standard](https://img.shields.io/badge/SPL-Token--2022-14F195)](https://spl.solana.com/token-2022)
@@ -17,8 +13,9 @@
 
 ## Table of Contents
 
-- [What is OTCM Protocol?](#what-is-otcm-protocol)
-- [The Problem](#the-problem)
+- [What is RWA Tokens?](#what-is-rwa-tokens)
+- [Three Modules](#three-modules)
+- [Market Context](#market-context)
 - [Architecture Overview — Nine Layers](#architecture-overview--nine-layers)
 - [Cross-Layer Communication Protocol](#cross-layer-communication-protocol)
 - [Layer 1: Solana Blockchain Foundation](#layer-1-solana-blockchain-foundation)
@@ -30,6 +27,8 @@
 - [Layer 7: Protocol Governance](#layer-7-protocol-governance)
 - [Layer 8: Wallet Infrastructure](#layer-8-wallet-infrastructure)
 - [Layer 9: Predictive AI Module](#layer-9-predictive-ai-module)
+- [Module 2: Real Estate Tokens](#module-2-real-estate-tokens)
+- [Module 3: CORECM Tokens](#module-3-corecm-tokens)
 - [Why Not Ethereum? Why Not L2?](#why-not-ethereum-why-not-l2)
 - [Why Not Raydium / Orca / Jupiter?](#why-not-raydium--orca--jupiter)
 - [Security Architecture](#security-architecture)
@@ -46,13 +45,15 @@
 
 ---
 
-## What is OTCM Protocol?
+## What is RWA Tokens?
 
-OTCM Protocol is a purpose-built, nine-layer Solana Mainnet-Beta infrastructure platform that tokenizes illiquid OTC microcap equity securities as **ST22 Digital Securities**. Each ST22 token represents direct beneficial ownership in Common Class B shares held in perpetual custody by [Empire Stock Transfer](https://www.empirestock.com), an SEC §17A-registered transfer agent and qualified custodian.
+RWA Tokens is a purpose-built, nine-layer Solana Mainnet-Beta infrastructure platform that tokenizes real-world assets across three asset classes — global equities, commercial real estate, and mineral and hydrocarbon project interests — under a single SEC Category 1 Model B compliance backbone.
 
-ST22 tokens are classified as **Category 5 Digital Securities** under [SEC Release No. 33-11412](https://www.sec.gov) (March 17, 2026), operating within the **Category 1 Model B** architecture defined by the January 28, 2026 Joint Staff Statement on Tokenized Securities from the Division of Corporation Finance, Division of Investment Management, and Division of Trading and Markets.
+All three modules are production-ready and available for issuer onboarding today: **Module 1: ST22 Digital Securities** (global equities), **Module 2: Real Estate Tokens** (commercial real estate), and **Module 3: CORECM Tokens** (mineral, oil, and gas project interests). Module 1 reaches general availability for live trading on CEDEX at Q3 2026; Modules 2 and 3 onboard issuers under the same nine-layer framework on the same timeline.
 
-The core insight: compliance enforcement in traditional markets is expensive because it requires human intermediaries at every step. When compliance is embedded in the token transfer primitive itself — enforced mathematically at the moment of every transfer by immutable smart contract code — the marginal cost of compliance per transaction approaches zero. This cost structure makes institutional-grade securities compliance viable for microcap OTC securities for the first time.
+Each tokenized instrument represents direct beneficial ownership in an underlying asset held in qualified custody by [Empire Stock Transfer](https://www.empirestock.com), an SEC §17A-registered transfer agent. Instruments operate within the **Category 1 Model B** architecture defined by [SEC Release No. 33-11412](https://www.sec.gov) (March 17, 2026) and the January 28, 2026 Joint Staff Statement on Tokenized Securities from the Division of Corporation Finance, Division of Investment Management, and Division of Trading and Markets.
+
+The core insight: compliance enforcement in traditional markets is expensive because it requires human intermediaries at every step. When compliance is embedded in the token transfer primitive itself — enforced mathematically at the moment of every transfer by immutable smart contract code — the marginal cost of compliance per transaction approaches zero. This cost structure makes institutional-grade securities compliance viable across asset classes that traditional finance cannot service economically.
 
 ```
 Transfer initiated → Token-2022 program → Transfer Hook CPI →
@@ -60,19 +61,36 @@ Transfer initiated → Token-2022 program → Transfer Hook CPI →
   ALL pass = transfer executes + immutable audit trail written on-chain
 ```
 
+Operated by [Groovy Company, Inc.](https://www.otcmarkets.com/stock/GROO/overview) (OTC: GROO, CIK 1499275, Wyoming domiciled). Headquartered in Atlanta, Georgia. Wyoming law governs all RWA Tokens documents.
+
 ---
 
-## The Problem
+## Three Modules
 
-11,000+ companies trade on U.S. OTC markets. Thousands have become completely untradeable, trapping an estimated **$50 billion+** in shareholder value across **5 million+ shareholders**. The structural failure compounds through three reinforcing dynamics:
+| Module | Asset Class | Status |
+|---|---|---|
+| **ST22 Digital Securities** | Global equities — Common Class B equity tokens for OTC microcap, NASDAQ, NYSE, AMEX, TSX, LSE, Tokyo, Hong Kong, and other exchange-listed issuers | **Production** · CEDEX trading GA Q3 2026 |
+| **Real Estate Tokens** | Income-producing commercial real estate via Nevada LLC → Nevada corporation pathway | **Production** · Issuer onboarding open |
+| **CORECM Tokens** | Royalty and project-equity instruments for mineral, oil, and gas operators | **Production** · Operator onboarding open |
 
-1. **Market makers abandon low-volume securities** — stocks trading less than $50,000 daily generate insufficient revenue to justify market-making commitments
-2. **Compliance costs force issuer withdrawal** — annual compliance costs of $15,000–$75,000 exceed revenue for many OTC issuers, causing them to abandon reporting obligations
-3. **Once securities enter the grey market, there is no recovery path** — traditional finance offers no mechanism to restore liquidity to securities that have lost market maker support
+All three modules share the same nine-layer architecture, the same Empire Stock Transfer custody framework, the same 42 Transfer Hook compliance controls, and the same CEDEX trading venue. Module-specific differences are isolated to the underlying instrument, the custody artifact, and the oracle feed driving price discovery.
 
-The result: millions of American investors hold legitimate securities — documented in SEC filings, confirmed by transfer agent records — yet cannot exercise the most fundamental economic right of ownership: disposition.
+**Equities scope note.** Module 1 production deployment onboards OTC microcap issuers under the Empire Stock Transfer custody arrangement at general availability in Q3 2026. Expansion to NASDAQ, NYSE, AMEX, TSX, LSE, and other listing venues is sequenced through 2026–2028 and is gated on transfer agent onboarding for each issuer's existing transfer agent of record. The protocol architecture is venue-agnostic; production rollout is sequenced by the regulatory and operational onboarding cadence per venue.
 
-Previous solution attempts failed at predictable structural points. Alternative Trading Systems (ATS) cannot generate sufficient order flow to achieve meaningful price discovery in thin markets while covering fixed compliance costs. Early blockchain tokenization projects either circumvented securities law entirely (triggering enforcement) or built compliance at the application layer where it could be disabled by non-compliant trading venues — exactly the architecture the SEC's January 28, 2026 Joint Staff Statement identifies as Category 2 (Third-Party Sponsored) risk exposure.
+---
+
+## Market Context
+
+The institutional infrastructure for tokenized real-world assets converged on a viable architecture across four market events in the twelve months preceding RWA Tokens' launch:
+
+| Date | Event | Significance |
+|---|---|---|
+| Jan 28, 2026 | SEC Joint Staff Statement on Tokenized Securities | First definitive guidance distinguishing Category 1 (issuer-sponsored) from Category 2 (third-party-sponsored) tokenization architecture |
+| Mar 17, 2026 | SEC Release No. 33-11412 | Codifies Category 1 Model B compliance — DLT integrated into the official Master Securityholder File via the SEC §17A-registered transfer agent |
+| Apr 13, 2026 | SEC Staff Statement on Covered User Interface Providers | Clarifies non-broker-dealer status for compliant interface providers operating with adequate compliance controls |
+| 2026 | GENIUS Act stablecoin framework | Establishes USDC and PYUSD as compliant settlement instruments; enables atomic delivery vs. payment on Solana |
+
+Combined U.S. addressable market across the three modules: equities (global listed and OTC), commercial real estate ($11T U.S. CRE), and global mineral and hydrocarbon reserves ($4T) — totaling **$15T+** institutional addressable market.
 
 ---
 
@@ -80,7 +98,7 @@ Previous solution attempts failed at predictable structural points. Alternative 
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────┐
-│                     OTCM PROTOCOL — NINE-LAYER STACK                        │
+│                     RWA TOKENS — NINE-LAYER STACK                           │
 ├──────┬──────────────────────────┬────────────────────────────────────────────┤
 │  L9  │ Predictive AI Module     │ EDGAR NLP · IDOS scoring · XGBoost ML     │
 │  L8  │ Wallet Infrastructure    │ iOS/Android native · Ledger/Trezor HW     │
@@ -96,7 +114,7 @@ Previous solution attempts failed at predictable structural points. Alternative 
 
 **Design philosophy:** Strict separation of concerns. Each layer handles a distinct responsibility and communicates with adjacent layers through well-defined interfaces. Securities compliance enforcement occurs at **Layer 2, the lowest programmable layer**, ensuring no higher-layer component can bypass, override, or selectively apply the 42 Transfer Hook security controls. A change to Layer 4 (AMM) cannot affect Layer 2 (Security Enforcement) — compliance is structurally isolated from trading mechanics.
 
-No layer is repurposed from general DeFi infrastructure. Each was purpose-built for tokenized securities.
+No layer is repurposed from general DeFi infrastructure. Each was purpose-built for tokenized real-world assets.
 
 ---
 
@@ -127,7 +145,7 @@ Inter-layer communication follows strict directional protocols ensuring data int
 
 - **Downward (Request Flow):** Actions at L9/L8/L5 flow downward through L2 for Transfer Hook verification, drawing oracle data from L6, before settling on L1. **No higher-layer action reaches L1 without passing through L2 compliance.**
 - **Upward (Response Flow):** Settlement confirmations propagate from L1 through L2 compliance acknowledgement, L6 oracle confirmation, into user-facing interfaces at L5/L8. Full on-chain audit trail at each transition.
-- **Oracle Feeds (L6 → L2):** Empire custody data, OFAC/SDN updates, AML risk scores, TWAP price feeds flow directly from L6 to L2. This is the **only external data channel** influencing compliance decisions — it does not pass through OTCM's application layer. Manipulating oracle inputs requires compromising Empire Stock Transfer's custody system directly, not OTCM's software.
+- **Oracle Feeds (L6 → L2):** Empire custody data, OFAC/SDN updates, AML risk scores, TWAP price feeds flow directly from L6 to L2. This is the **only external data channel** influencing compliance decisions — it does not pass through the application layer. Manipulating oracle inputs requires compromising Empire Stock Transfer's custody system directly, not RWA Tokens' software.
 - **Governance Writes (L7 → L2/L3/L4):** Passed proposals write to parameter configurations via 48-hour timelock. This is the only cross-layer write path not triggered by a token transfer. Governance **cannot** write to immutable Transfer Hook logic — only adjustable parameters within hard-coded bounds.
 - **Horizontal:** Components within each layer communicate via internal APIs. No horizontal communication crosses layer boundaries.
 
@@ -139,7 +157,7 @@ Selected for a single decisive criterion: **SPL Token-2022 Transfer Hook support
 
 ### Solana Core Innovations — Why They Matter for ST22
 
-| Innovation | Mechanism | OTCM Protocol Relevance |
+| Innovation | Mechanism | RWA Tokens Relevance |
 |---|---|---|
 | **Proof of History (PoH)** | SHA-256 hash chain timestamping transactions before consensus | Deterministic ~400ms block times matching Empire custody oracle refresh |
 | **Tower BFT** | PoH-optimized Byzantine Fault Tolerant consensus | Faster validator agreement via shared verifiable time reference |
@@ -152,7 +170,7 @@ Selected for a single decisive criterion: **SPL Token-2022 Transfer Hook support
 
 ### SPL Token-2022 Features Used
 
-| Feature | OTCM Protocol Usage |
+| Feature | RWA Tokens Usage |
 |---|---|
 | **Transfer Hooks** | 42 security controls invoked atomically on every ST22 transfer via CPI — core compliance mechanism |
 | **Metadata Extension** | On-chain token metadata: issuer identity, CUSIP, Common B authorization, regulatory classification |
@@ -164,7 +182,7 @@ Selected for a single decisive criterion: **SPL Token-2022 Transfer Hook support
 
 ## Layer 2: Security Enforcement — 42 Transfer Hook Controls
 
-The most critical innovation. The only layer that **cannot be disabled, upgraded, or worked around** by any participant — including OTCM Protocol itself. Every ST22 token transfer must pass all 42 controls. No admin override. No whitelist bypass.
+The most critical innovation. The only layer that **cannot be disabled, upgraded, or worked around** by any participant — including Groovy Company, Inc. itself. Every ST22 token transfer must pass all 42 controls. No admin override. No whitelist bypass.
 
 ### Transaction Flow
 
@@ -177,7 +195,7 @@ User initiates transfer (wallet, DEX, or programmatic call)
   → ALL controls pass → Transfer executes + immutable audit trail written
 ```
 
-**Critical Property:** The Transfer Hook cannot be removed after mint creation. Once an ST22 token is minted with OTCM's Transfer Hook, every transfer for its entire existence is validated against all 42 controls. This is an SPL Token-2022 standard property — the hook program address is permanently stored in the mint account.
+**Critical Property:** The Transfer Hook cannot be removed after mint creation. Once an ST22 token is minted with the protocol's Transfer Hook, every transfer for its entire existence is validated against all 42 controls. This is an SPL Token-2022 standard property — the hook program address is permanently stored in the mint account.
 
 ### The 42 Controls — Eight Categories
 
@@ -198,7 +216,7 @@ User initiates transfer (wallet, DEX, or programmatic call)
 use anchor_lang::prelude::*;
 
 #[program]
-pub mod otcm_transfer_hook {
+pub mod rwa_tokens_transfer_hook {
     use super::*;
 
     pub fn transfer_hook(ctx: Context<TransferHook>, amount: u64) -> Result<()> {
@@ -277,12 +295,11 @@ The defining infrastructure innovation. Every issuer that onboards inherits an i
 | Property | Specification |
 |---|---|
 | **Pool Structure** | Single shared capital reserve — all ST22 issuers draw simultaneously |
-| **Funding Sources** | (1) OTCM Protocol Solana Treasury; (2) OTCM Staking Pool |
-| **Perpetual Deepening** | 5% fee on every CEDEX trade + investor secondary sale proceeds + 2% staking reinvestment |
+| **Funding Sources** | (1) OTCM Security Token proceeds ($20M Reg D) routed via Solana Treasury; (2) Staking Pool allocation; (3) 0.44% permanent lock on every CEDEX trade; (4) investor secondary sale proceeds; (5) 2% staking-reward reinvestment |
 | **LP Token Status** | **Burned at initialization** — no withdrawal function exists in the contract |
 | **Withdrawal Possibility** | Zero. Mathematical impossibility — the function was never written. |
 
-**Why this matters:** Traditional per-issuer pools fail at microcap scale because each token requires dedicated capital and thin markets can never justify the depth. A shared pool means issuer #500 gets the same liquidity depth as issuer #1. The pool only grows, across every issuer and every trade, permanently.
+**Why this matters:** Traditional per-issuer pools fail at scale because each token requires dedicated capital and thin markets can never justify the depth. A shared pool means issuer #500 gets the same liquidity depth as issuer #1. The pool only grows, across every issuer and every trade, permanently. Real Estate Tokens (Module 2) and CORECM Tokens (Module 3) draw against the same Global Unified Pool when activated.
 
 ---
 
@@ -297,13 +314,13 @@ Every major Solana DEX — Raydium, Orca, Jupiter, Meteora — was built before 
 Implements `x × y = k` against the Global Unified CEDEX Liquidity Pool:
 
 ```
-x = SOL reserve     y = ST22 token reserve     k = constant product invariant
+x = USDC reserve     y = ST22 token reserve     k = constant product invariant
 fee = 5% (500 bps) applied BEFORE invariant calculation — k grows with every trade
 
-Example: Buy ST22 with 10 SOL from pool with 100 SOL / 1,000,000 tokens (k = 100M)
+Example: Buy ST22 with 10 USDC from pool with 100 USDC / 1,000,000 tokens (k = 100M)
 
-  10 SOL input → 5% fee → 9.5 SOL effective
-  new_x = 109.5 SOL
+  10 USDC input → 5% fee → 9.5 USDC effective
+  new_x = 109.5 USDC
   new_y = 100,000,000 / 109.5 = 913,242 tokens
   tokens_out = 1,000,000 - 913,242 = 86,758
   k_after = 109.5 × 913,242 ≥ 100,000,000 ✓
@@ -380,7 +397,7 @@ pub fn check_price_impact(trade: &SwapParams, twap: u64, price: u64) -> Result<(
 
 ## Layer 6: Oracle Network
 
-Real-time data backbone feeding every Transfer Hook compliance decision. L6 feeds L2 **directly** — oracle data drives compliance without passing through OTCM's application stack. An oracle failure is a compliance failure.
+Real-time data backbone feeding every Transfer Hook compliance decision. L6 feeds L2 **directly** — oracle data drives compliance without passing through the application stack. An oracle failure is a compliance failure.
 
 ### Five Oracle Categories
 
@@ -401,7 +418,7 @@ Empire → Ed25519 attestation → every ~400ms
   ├─ supply == custodied_shares → Control 1 passes
   └─ ANY discrepancy (≥1 token) → Error 6001 → ALL transfers halt
        → Circuit breaker on affected mint
-       → P0 dual notification: OTCM + Empire (15-min SLA)
+       → P0 dual notification: protocol + Empire (15-min SLA)
        → Resumes only after 2-of-3 oracle consensus
 ```
 
@@ -414,7 +431,7 @@ Empire → Ed25519 attestation → every ~400ms
 | Max price impact | 2%/transfer | 1–5% | No |
 | Outlier rejection | >3σ from median | — | Yes |
 
-**Production record:** Zero custody discrepancy events across 3 beta issuers, $7M+ processed liquidity.
+**Pre-rebrand validation record:** Zero custody discrepancy events across 3 beta issuers, $7M+ processed liquidity (under predecessor brand OTCM Protocol; dba cancelled May 1, 2026).
 
 ---
 
@@ -448,7 +465,7 @@ Even raw Solana transactions bypassing the wallet app still trigger all 42 Trans
 
 ## Layer 9: Predictive AI Module
 
-Commercial intelligence engine. Proprietary AI monitors SEC EDGAR + OTC Markets data across ~15,000 OTC companies, generating daily-refreshed **IDOS (Issuer Distress and Opportunity Score)** ratings.
+Commercial intelligence engine. Proprietary AI monitors SEC EDGAR + OTC Markets data, generating daily-refreshed **IDOS (Issuer Distress and Opportunity Score)** ratings for the equities universe. Module 2 and Module 3 extensions for real estate and CORECM-specific intelligence are scheduled with their respective module launches.
 
 | Component | Technology | Performance |
 |---|---|---|
@@ -458,7 +475,51 @@ Commercial intelligence engine. Proprietary AI monitors SEC EDGAR + OTC Markets 
 | **Launch Timing (LTOE)** | Solana congestion + market sentiment model | 4h refresh + real-time on congestion |
 | **Model Governance** | Drift detection, emergency rollback, A/B shadow ≥2 weeks | Continuous |
 
-Data sources: SEC EDGAR (public), OTC Markets Group (public), Solana on-chain (public). No PII/PCI/PHI. Rule 506(c), CAN-SPAM, GDPR Article 6(1)(f) compliant.
+Data sources: SEC EDGAR (public), OTC Markets Group (public), Solana on-chain (public). No PII/PCI/PHI. Reg D, CAN-SPAM, GDPR Article 6(1)(f) compliant.
+
+---
+
+## Module 2: Real Estate Tokens
+
+Fractional ownership of income-producing commercial real estate, tokenized on the same nine-layer architecture as Module 1.
+
+### Module-Specific Architecture
+
+| Component | Module 2 Specification |
+|---|---|
+| **Underlying instrument** | Common Class B equity in a Nevada corporation holding the property; Nevada LLC → Nevada corporation conversion required for fractionalization |
+| **Custody** | Empire Stock Transfer holds Common Class B shares of the property-holding corporation (same custody framework as ST22) |
+| **Pricing model** | CPMM with periodic NAV reappraisal cycles (independent appraisal triggers on-chain NAV update) |
+| **Initial token pricing** | +22% premium to NAV (fractionalization premium); CPMM provides continuous two-sided liquidity around NAV |
+| **Circuit breakers** | ±10% in 5 minutes triggers 15-minute halt (same Layer 2 mechanism as ST22); reappraisal cycle resets reference NAV |
+| **Distributions** | Net rental income distributed on-chain in USDC or PYUSD on a fixed cadence |
+| **Layer reuse** | All nine layers — L2 Transfer Hooks (with property-instrument-specific custody oracle), L3 Global Unified Pool, L4 CPMM, L5 CEDEX, L6 oracle network with appraisal feed addition, L7 governance, L8 wallet, L9 AI module RE-extension |
+
+### Status
+
+Module 2 is production-ready against the existing nine-layer foundation and open for issuer onboarding. Pilot deal scoped: $950K net equity in an income-producing commercial property. Property appraisal oracle is the principal Module 2-specific addition to Layer 6. Empire Stock Transfer custody framework extends to Common B equity of the property-holding Nevada corporation — no new custody arrangement is required.
+
+---
+
+## Module 3: CORECM Tokens
+
+Tokenized royalty and project-equity instruments for mineral, oil, and gas operators on the same nine-layer architecture.
+
+### Module-Specific Architecture
+
+| Component | Module 3 Specification |
+|---|---|
+| **Underlying instrument** | Two structures supported: (a) royalty interest stripped from the mineral estate, or (b) project-equity Common Class B in the operating entity — selected per jurisdiction and Joint Operating Agreement (JOA) constraints |
+| **Custody** | Empire Stock Transfer holds the underlying instrument (royalty assignment or Common B equity) under the same §17A-registered framework |
+| **Reserve attestation** | Independent reserve engineer issues SPE-PRMS-compliant report; reserve volumes hashed and signed, anchored on-chain as the token's backing record |
+| **Pricing model** | CPMM with operator-encoded distribution waterfalls (working interest splits, royalty waterfalls, lifting-cost mechanics) |
+| **Distributions** | Production reports trigger on-chain stablecoin distributions to token holders; quarterly attestations refresh the on-chain reserve record |
+| **JOA-aware distribution logic** | On-chain waterfall logic encodes JOA terms — working interests, payouts, lifting costs — eliminating the manual reconciliation that breaks royalty distribution at scale |
+| **Layer reuse** | All nine layers — L2 with reserve-attestation custody oracle, L3 Global Unified Pool, L4 CPMM with waterfall extension, L5 CEDEX, L6 oracle network with reserve-attestation and production-report feeds, L7 governance, L8 wallet, L9 AI module CORECM-extension |
+
+### Status
+
+Module 3 is production-ready against the existing nine-layer foundation and open for operator onboarding. The principal Module 3-specific additions are the reserve-attestation oracle (Layer 6), the JOA-aware distribution waterfall in Layer 4, and the on-chain reserve record anchoring as a Layer 2 custody-equivalent. Operator onboarding pathways are scoped against U.S.-domiciled mineral, oil, and gas operators with international expansion sequenced thereafter.
 
 ---
 
@@ -545,7 +606,7 @@ Data sources: SEC EDGAR (public), OTC Markets Group (public), Solana on-chain (p
 ## Repository Structure
 
 ```
-otcm-protocol/
+rwa-tokens/
 ├── programs/
 │   ├── transfer-hook/              # Layer 2 — 42 controls (Rust/Anchor)
 │   │   ├── src/
@@ -581,6 +642,9 @@ otcm-protocol/
 │   ├── edgar-nlp/                  # Filing NLP
 │   ├── investor-profiling/         # Wallet behavioral
 │   └── ltoe/                       # Launch timing
+├── modules/                        # Module 2 (Real Estate) + Module 3 (CORECM)
+│   ├── real-estate/                # Module 2 — Real Estate Tokens
+│   └── corecm/                     # Module 3 — CORECM Tokens
 ├── sdk/                            # TypeScript SDK
 ├── docs/                           # Whitepaper + specs
 ├── audits/                         # Certora + audit reports
@@ -612,8 +676,9 @@ otcm-protocol/
 
 | Authority | Reference | Application |
 |---|---|---|
-| SEC | Release No. 33-11412 (Mar 17, 2026) | Category 5 Digital Securities |
+| SEC | Release No. 33-11412 (Mar 17, 2026) | Category 1 Model B Digital Securities |
 | SEC | Joint Staff Statement (Jan 28, 2026) | Category 1 Model B architecture |
+| SEC | Staff Statement on Covered UI Providers (Apr 13, 2026) | Non-broker-dealer interface provider compliance |
 | SEC | Section 17A, Exchange Act 1934 | Empire registration + custody |
 | SEC | Regulation D (17 CFR §§230.501–506) | US accredited investor exemption |
 | SEC | Regulation S (17 CFR §§230.901–905) | Non-US offshore safe harbor |
@@ -654,10 +719,11 @@ otcm-protocol/
 
 | Phase | Timeline | Milestones |
 |---|---|---|
-| **Launch** | Q3 2026 | Mainnet · CEDEX live · 10 ST22 listings · $20M STO (Reg D/S) · Empire onboarding |
-| **Growth** | Q4 2026–Q1 2027 | 100+ issuers · UK/EU/UAE · NASDAQ strategy · CEX listings |
-| **Expansion** | 2027–2028 | Reg A+ retail · 1,000+ issuers · Wormhole NTT cross-chain · Governance activation |
-| **Scale** | 2028+ | Global infrastructure · EVM compatibility · every illiquid security has a market |
+| **Current state** | May 2026 | All three modules production-ready · Real Estate Tokens issuer onboarding open · CORECM Tokens operator onboarding open · Empire Stock Transfer custody framework operational across all three asset classes · pre-rebrand on-chain validation complete |
+| **CEDEX Trading GA** | Q3 2026 | Mainnet · CEDEX live for ST22 trading · OTC microcap issuers at production scale · $20M OTCM Security Token (Reg D / Reg S) raise · Empire Stock Transfer integrated investor onboarding |
+| **Equities Expansion** | Q2 2027 | NASDAQ pilot listings · OTCM Protocol Inc. (Florida) FINRA funding portal evaluation · Reg CF capital formation alongside Reg D / Reg S |
+| **Growth** | 2027–2028 | Multi-venue equities (NYSE / AMEX / TSX / LSE / Tokyo / HK) · 1,000+ issuers across all three modules · UK / EU / UAE jurisdictions · Wormhole NTT cross-chain · Governance activation |
+| **Scale** | 2028+ | Global RWA infrastructure across all three modules · EVM compatibility · institutional adoption at scale |
 
 ---
 
@@ -672,8 +738,8 @@ Rust 1.75+  ·  Solana CLI 1.18+  ·  Anchor 0.30+  ·  Node.js 20 LTS  ·  Yarn
 ### Build & Test
 
 ```bash
-git clone https://github.com/otcm-protocol/otcm-protocol.git
-cd otcm-protocol && yarn install
+git clone https://github.com/groovy-company/rwa-tokens.git
+cd rwa-tokens && yarn install
 
 anchor build                    # Build all Solana programs
 anchor test                     # Full test suite (localnet)
@@ -700,9 +766,9 @@ ts-node sdk/scripts/verify-hook.ts --network devnet --mint <MINT_ADDRESS>
 ### SDK
 
 ```typescript
-import { OtcmClient } from '@otcm-protocol/sdk';
+import { RwaTokensClient } from '@rwa-tokens/sdk';
 
-const client = new OtcmClient({ network: 'devnet' });
+const client = new RwaTokensClient({ network: 'devnet' });
 
 const hook = await client.verifyTransferHook(mintAddress);
 // hook.controlsActive === 42
@@ -719,10 +785,10 @@ const custody = await client.getCustodyAttestation(mintAddress);
 
 | Document | Description |
 |---|---|
-| [Whitepaper V8.0](https://otcm.io/whitepaper) | Full technical whitepaper — 15 sections + glossary |
-| [Lightpaper V8.0](https://otcm.io/lightpaper) | Executive summary — 10 pages |
-| [Transfer Hook Spec](docs/OTCM-TH-SPEC-001.md) | OTCM-TH-SPEC-001 — SEC submission enclosure |
-| [SEC Roadmap](docs/SEC-ROADMAP.md) | Category 1 architecture + regulatory compliance |
+| [Whitepaper V8.0](https://rwatokens.net/whitepaper) | Full technical whitepaper — 15 sections + glossary |
+| [Lightpaper V8.0](https://rwatokens.net/lightpaper) | Executive summary — 10 pages |
+| [Transfer Hook Spec](docs/RWA-TH-SPEC-001.md) | RWA-TH-SPEC-001 — SEC submission enclosure |
+| [SEC Roadmap](docs/SEC-ROADMAP.md) | Category 1 Model B architecture + regulatory compliance |
 | [ERC-3643 vs ST22](docs/ERC3643-VS-ST22.md) | T-REX (Ethereum) vs. CEDEX (Solana) analysis |
 | [API Reference](docs/API.md) | CEDEX REST/WebSocket + SDK |
 | [AML Policy](docs/AML-POLICY.md) | BSA/AML compliance program |
@@ -732,8 +798,9 @@ const custody = await client.getCustodyAttestation(mintAddress);
 ## References
 
 ### Securities Regulation
-- SEC Release No. 33-11412 (March 17, 2026) — Digital Securities taxonomy
+- SEC Release No. 33-11412 (March 17, 2026) — Category 1 Model B Digital Securities
 - SEC Joint Staff Statement on Tokenized Securities (January 28, 2026)
+- SEC Staff Statement on Covered User Interface Providers (April 13, 2026)
 - 17 CFR §§230.501–506 (Reg D) · §§230.901–905 (Reg S) · §230.144 (Rule 144)
 - 17 CFR §§240.17Ad-2–17Ad-13 (Transfer Agent Rules)
 
@@ -760,8 +827,8 @@ const custody = await client.getCustodyAttestation(mintAddress);
 
 | Channel | Contact |
 |---|---|
-| Responsible Disclosure | security@otcm.io |
-| Bug Bounty | Up to $100K — [otcm.io/security](https://otcm.io/security) |
+| Responsible Disclosure | security@rwatokens.net |
+| Bug Bounty | Up to $100K — [rwatokens.net/security](https://rwatokens.net/security) |
 | Audit Reports | `/audits` post-mainnet |
 
 ---
@@ -775,5 +842,7 @@ Core Transfer Hook security controls and compliance logic are source-available f
 ---
 
 <p align="center">
-  <strong>OTCM Protocol</strong> — Creating markets where none exist.<br/>
+  <strong>RWA Tokens</strong> — Institutional infrastructure for tokenized real-world assets.<br/>
+  Operated by Groovy Company, Inc. (OTC: GROO) · Wyoming domiciled · Atlanta, Georgia<br/>
+  <a href="https://rwatokens.net">rwatokens.net</a> · <a href="https://cedex.market">cedex.market</a>
 </p>
